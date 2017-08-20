@@ -5,8 +5,8 @@ var S = (function () {
 
         sw : 100, // the pixel width and height of a section
         sh : 100,
-        W : 2, // the section matrix width and height
-        H : 2,
+        W : 4, // the section matrix width and height
+        H : 4,
 
         secs : [], // the sections array
         load : [], // currently loaded sections
@@ -55,8 +55,8 @@ var S = (function () {
     // the view port
     vp = {
 
-        w : 320,
-        h : 240,
+        w : 50,
+        h : 50,
 
         // set up
         set : function () {
@@ -71,6 +71,14 @@ var S = (function () {
 
             this.load = [];
 
+            var SX = Math.floor(this.x / map.sw),
+            SY = Math.floor(this.y / map.sh),
+            EX = Math.floor((this.x + this.w) / map.sw),
+            EY = Math.floor((this.y + this.h) / map.sh);
+
+            console.log('start pos: ' + SX + ',' + SY);
+            console.log('end pos: ' + EX + ',' + EY);
+
         }
 
     },
@@ -79,7 +87,10 @@ var S = (function () {
     api = {
 
         // ref to map
-        map : map
+        map : map,
+
+        // ref to vp
+        vp : vp
 
     };
 
