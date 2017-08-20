@@ -31,6 +31,7 @@ var S = (function () {
                     // push new section object
                     this.secs.push({
 
+                        i : (Y + this.W / 2) * this.W + X + this.W / 2,
                         X : X, // cell pos
                         Y : Y,
                         x : x, // px pos
@@ -58,18 +59,18 @@ var S = (function () {
         // set up
         set : function () {
 
-            //this.x = -this.w / 2;
-            //this.y = -this.h / 2;
+            this.x = -this.w / 2;
+            this.y = -this.h / 2;
 
-            this.x = -20;
-            this.y = -220;
+            //this.x = -20;
+            //this.y = -220;
 
         },
 
         // load sections based on current view port position
         ls : function () {
 
-            this.load = [];
+            map.load = [];
 
             var SX = Math.floor(this.x / map.sw),
             SY = Math.floor(this.y / map.sh),
@@ -92,12 +93,12 @@ var S = (function () {
 
                         i = (map.H / 2 + Y) * map.H + X + map.W / 2;
 
-                        console.log(X + ',' + Y);
-                        console.log('i: ' + i);
+                        //console.log(X + ',' + Y);
+                        //console.log('i: ' + i);
+
+                        map.load.push(map.secs[i]);
 
                     }
-
-                    //this.load.push(this.secs[i]);
 
                     X += 1;
 
@@ -107,7 +108,7 @@ var S = (function () {
 
             }
 
-            //console.log(map.secs);
+            console.log(map.load);
             //console.log(map.secs[i]);
 
         }
