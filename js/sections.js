@@ -25,9 +25,6 @@ var S = (function () {
                 X = -this.W / 2;
                 while (X < this.W / 2) {
 
-                    //x = this.W / 2 * this.sw + this.sw * X;
-                    //y = this.H / 2 * this.sh + this.sh * Y;
-
                     x = X * this.sw;
                     y = Y * this.sh;
 
@@ -61,8 +58,11 @@ var S = (function () {
         // set up
         set : function () {
 
-            this.x = -this.w / 2;
-            this.y = -this.h / 2;
+            //this.x = -this.w / 2;
+            //this.y = -this.h / 2;
+
+            this.x = -20;
+            this.y = -220;
 
         },
 
@@ -74,10 +74,41 @@ var S = (function () {
             var SX = Math.floor(this.x / map.sw),
             SY = Math.floor(this.y / map.sh),
             EX = Math.floor((this.x + this.w) / map.sw),
-            EY = Math.floor((this.y + this.h) / map.sh);
+            EY = Math.floor((this.y + this.h) / map.sh),
+            Y = SY,
+            X,
+            i;
 
             console.log('start pos: ' + SX + ',' + SY);
             console.log('end pos: ' + EX + ',' + EY);
+
+            Y = SY;
+            while (Y < EY + 1) {
+
+                X = SX;
+                while (X < EX + 1) {
+
+                    if (X >= -map.W / 2 && X < map.W / 2 && Y >= -map.H / 2 && Y < map.H / 2) {
+
+                        i = (map.H / 2 + Y) * map.H + X + map.W / 2;
+
+                        console.log(X + ',' + Y);
+                        console.log('i: ' + i);
+
+                    }
+
+                    //this.load.push(this.secs[i]);
+
+                    X += 1;
+
+                }
+
+                Y += 1;
+
+            }
+
+            //console.log(map.secs);
+            //console.log(map.secs[i]);
 
         }
 
