@@ -3,10 +3,10 @@ var S = (function () {
     // the section map
     var map = {
 
-        sw : 100, // the pixel width and height of a section
-        sh : 100,
-        W : 4, // the section matrix width and height
-        H : 4,
+        sw : 25, // the pixel width and height of a section
+        sh : 25,
+        W : 8, // the section matrix width and height
+        H : 8,
 
         secs : [], // the sections array
         load : [], // currently loaded sections
@@ -53,8 +53,8 @@ var S = (function () {
     // the view port
     vp = {
 
-        w : 50,
-        h : 50,
+        w : 75,
+        h : 75,
 
         // set up
         set : function () {
