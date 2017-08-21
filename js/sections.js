@@ -3,10 +3,10 @@ var S = (function () {
     // the section map
     var map = {
 
-        sw : 25, // the pixel width and height of a section
-        sh : 25,
-        W : 8, // the section matrix width and height
-        H : 8,
+        sw : 20, // the pixel width and height of a section
+        sh : 20,
+        W : 10, // the section matrix width and height
+        H : 10,
 
         secs : [], // the sections array
         load : [], // currently loaded sections
@@ -53,8 +53,8 @@ var S = (function () {
     // the view port
     vp = {
 
-        w : 75,
-        h : 75,
+        w : 20,
+        h : 20,
 
         // set up
         set : function () {
@@ -76,15 +76,18 @@ var S = (function () {
             SY = Math.floor(this.y / map.sh),
             EX = Math.floor((this.x + this.w) / map.sw),
             EY = Math.floor((this.y + this.h) / map.sh),
-            Y = SY,
+
+            la = 2, //load ahead
+
+            Y,
             X,
             i;
 
-            Y = SY;
-            while (Y < EY+1) {
+            Y = SY - la;
+            while (Y < EY + la) {
 
-                X = SX;
-                while (X < EX+1) {
+                X = SX - la;
+                while (X < EX + la) {
 
                     if (X >= -map.W / 2 && X < map.W / 2 && Y >= -map.H / 2 && Y < map.H / 2) {
 

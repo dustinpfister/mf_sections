@@ -91,8 +91,8 @@ S.vp.ls();
 
         requestAnimationFrame(loop);
 
-        S.vp.x = S.map.sw * 0;
-        S.vp.y = S.map.sh * 0;
+        S.vp.x = S.map.sw * -.2;
+        S.vp.y = S.map.sh * -1;
 
         S.vp.ls();
 
