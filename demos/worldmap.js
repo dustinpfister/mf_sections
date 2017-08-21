@@ -1,12 +1,14 @@
 
-S.vp.ls();
 
 (function () {
 
     // create and inject a canvas
     var canvas = document.createElement('canvas'),
     ctx = canvas.getContext('2d'),
-
+    mapH,
+    mapW,
+    offX,
+    offY,
     setup = function () {
 
         // append to body
@@ -15,6 +17,11 @@ S.vp.ls();
         // set actual matrix size of the canvas
         canvas.width = 320;
         canvas.height = 240;
+
+        mapW = S.map.sw * S.map.W;
+        mapH = S.map.sh * S.map.H;
+        offX = mapW / 2 + (canvas.width / 2 - mapW / 2);
+        offY = mapH / 2 + (canvas.height / 2 - mapH / 2);
 
         loop();
 
@@ -30,9 +37,9 @@ S.vp.ls();
             ctx.strokeStyle = '#ffffff';
             ctx.strokeRect(
 
-                sec.x + S.map.sw * (S.map.W / 2),
+                sec.x + offX,
 
-                sec.y + S.map.sh * (S.map.H / 2),
+                sec.y + offY,
 
                 S.map.sw, S.map.sh);
 
@@ -47,9 +54,9 @@ S.vp.ls();
             ctx.strokeStyle = '#00ffff';
             ctx.strokeRect(
 
-                sec.x + S.map.sw * (S.map.W / 2),
+                sec.x + offX,
 
-                sec.y + S.map.sh * (S.map.H / 2),
+                sec.y + offY,
 
                 S.map.sw, S.map.sh);
 
@@ -64,7 +71,7 @@ S.vp.ls();
 
         ctx.strokeRect(
 
-            S.vp.x + S.map.sw * (S.map.W / 2), S.vp.y + S.map.sh * (S.map.H / 2), S.vp.w, S.vp.h)
+            S.vp.x + offX, S.vp.y + offY, S.vp.w, S.vp.h)
 
     },
 
@@ -91,8 +98,8 @@ S.vp.ls();
 
         requestAnimationFrame(loop);
 
-        S.vp.x = S.map.sw * -.2;
-        S.vp.y = S.map.sh * -1;
+        S.vp.x = -S.vp.w / 2;
+        S.vp.y = -S.vp.h / 2;
 
         S.vp.ls();
 

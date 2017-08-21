@@ -72,10 +72,10 @@ var S = (function () {
 
             map.load = [];
 
-            var SX = Math.floor(this.x / map.sw),
-            SY = Math.floor(this.y / map.sh),
-            EX = Math.floor((this.x + this.w) / map.sw),
-            EY = Math.floor((this.y + this.h) / map.sh),
+            var SX = Math.round(this.x / map.sw),
+            SY = Math.round(this.y / map.sh),
+            EX = Math.round((this.x + this.w) / map.sw),
+            EY = Math.round((this.y + this.h) / map.sh),
 
             la = 2, //load ahead
 
