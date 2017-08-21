@@ -25,7 +25,7 @@ S.vp.ls();
 
         var s = S.map.secs;
 
-        s.forEach(function (sec) {
+        s.forEach(function (sec, index) {
 
             ctx.strokeStyle = '#ffffff';
             ctx.strokeRect(
@@ -40,6 +40,22 @@ S.vp.ls();
 
     },
 
+    drawLoaded = function () {
+
+        S.map.load.forEach(function (sec, index) {
+
+            ctx.strokeStyle = '#00ffff';
+            ctx.strokeRect(
+
+                sec.x + S.map.sw * (S.map.W / 2),
+
+                sec.y + S.map.sh * (S.map.H / 2),
+
+                S.map.sw, S.map.sh);
+
+        });
+    },
+
     //
     drawViewport = function () {
 
@@ -47,8 +63,8 @@ S.vp.ls();
         ctx.strokeStyle = '#00ff00';
 
         ctx.strokeRect(
-		
-		S.vp.x+ S.map.sw * (S.map.W / 2), S.vp.y + S.map.sh * (S.map.H / 2), S.vp.w, S.vp.h)
+
+            S.vp.x + S.map.sw * (S.map.W / 2), S.vp.y + S.map.sh * (S.map.H / 2), S.vp.w, S.vp.h)
 
     },
 
@@ -56,6 +72,7 @@ S.vp.ls();
     draw = function () {
 
         drawSections();
+        drawLoaded();
         drawViewport()
 
     },
@@ -73,6 +90,11 @@ S.vp.ls();
     loop = function () {
 
         requestAnimationFrame(loop);
+
+        S.vp.x = S.map.sw * 0;
+        S.vp.y = S.map.sh * 0;
+
+        S.vp.ls();
 
         cls();
         draw();

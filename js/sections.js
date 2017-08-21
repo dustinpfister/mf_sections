@@ -80,21 +80,15 @@ var S = (function () {
             X,
             i;
 
-            console.log('start pos: ' + SX + ',' + SY);
-            console.log('end pos: ' + EX + ',' + EY);
-
             Y = SY;
-            while (Y < EY + 1) {
+            while (Y < EY+1) {
 
                 X = SX;
-                while (X < EX + 1) {
+                while (X < EX+1) {
 
                     if (X >= -map.W / 2 && X < map.W / 2 && Y >= -map.H / 2 && Y < map.H / 2) {
 
                         i = (map.H / 2 + Y) * map.H + X + map.W / 2;
-
-                        //console.log(X + ',' + Y);
-                        //console.log('i: ' + i);
 
                         map.load.push(map.secs[i]);
 
@@ -107,9 +101,6 @@ var S = (function () {
                 Y += 1;
 
             }
-
-            console.log(map.load);
-            //console.log(map.secs[i]);
 
         }
 
