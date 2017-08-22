@@ -3,10 +3,10 @@ var S = (function () {
     // the section map
     var map = {
 
-        sw : 80, // the pixel width and height of a section
-        sh : 60,
-        W : 8, // the section matrix width and height
-        H : 8,
+        sw : 32, // the pixel width and height of a section
+        sh : 16,
+        W : 23, // the section matrix width and height
+        H : 17,
 
         secs : [], // the sections array
         load : [], // currently loaded sections
@@ -23,8 +23,11 @@ var S = (function () {
 
             if (X >= -map.W / 2 && X < map.W / 2 && Y >= -map.H / 2 && Y < map.H / 2) {
 
-                return this.secs[(map.H / 2 + Y) * map.H + X + map.W / 2];
+                //return this.secs[(map.H / 2 + Y) * map.H + X + map.W / 2];
 
+				return this.secs[ map.W * Y + X + Math.floor(map.H * map.W / 2)];
+
+				
             };
 
         },
@@ -92,7 +95,7 @@ var S = (function () {
             EX = Math.round((this.x + this.w) / map.sw),
             EY = Math.round((this.y + this.h) / map.sh),
 
-            la = 1, //load ahead
+            la = 2, //load ahead
 
             Y,
             X,

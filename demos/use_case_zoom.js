@@ -72,23 +72,33 @@
         canvas.width = 800;
         canvas.height = 600;
 
+        // setup map
+
+        S.map.sw = 32;
+        S.map.sh = 16;
+        S.map.W = 16;
+        S.map.H = 9;
+
+        S.vp.w = 32;
+        S.vp.h = 32;
+
+        S.vp.set();
+        S.map.set();
+
         mapW = S.map.sw * S.map.W;
         mapH = S.map.sh * S.map.H;
-        offX = mapW / 2 + (canvas.width / 2 - mapW / 2);
-        offY = mapH / 2 + (canvas.height / 2 - mapH / 2);
+        offX = mapW / 2 + 10; //mapW / 2 + (canvas.width / 2 - mapW / 2);
+        offY = mapH / 2 + 10; //mapH / 2 + (canvas.height / 2 - mapH / 2);
+
 
         // start at center
         S.vp.x = -S.vp.w / 2;
         S.vp.y = -S.vp.h / 2;
 
-        console.log();
+        // rings
+        //ring(20, 50);
+        //ring(100, 200);
 
-        // inner ring
-
-        console.log();
-
-        ring(20, 50);
-        ring(100, 200);
 
         loop();
 
@@ -228,6 +238,11 @@
 
         }
 
+        if (keys[51]) {
+
+            console.log(S.map.load);
+
+        }
         S.vp.ls();
 
         cls();
