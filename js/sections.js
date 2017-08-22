@@ -3,13 +3,31 @@ var S = (function () {
     // the section map
     var map = {
 
-        sw : 32, // the pixel width and height of a section
-        sh : 24,
-        W : 16, // the section matrix width and height
-        H : 16,
+        sw : 80, // the pixel width and height of a section
+        sh : 60,
+        W : 8, // the section matrix width and height
+        H : 8,
 
         secs : [], // the sections array
         load : [], // currently loaded sections
+
+		// get a section by x, and y pixel location
+        getPos : function (x, y) {
+
+            return this.get(Math.floor(x / this.sw), Math.floor(y / this.sh));
+
+        },
+
+        // get a section by X & Y sec pos
+        get : function (X, Y) {
+
+            if (X >= -map.W / 2 && X < map.W / 2 && Y >= -map.H / 2 && Y < map.H / 2) {
+
+                return this.secs[(map.H / 2 + Y) * map.H + X + map.W / 2];
+
+            };
+
+        },
 
         // setup sections
         set : function () {
@@ -53,17 +71,14 @@ var S = (function () {
     // the view port
     vp = {
 
-        w : 3.2,
-        h : 2.4,
+        w : 160,
+        h : 120,
 
         // set up
         set : function () {
 
             this.x = -this.w / 2;
             this.y = -this.h / 2;
-
-            //this.x = -20;
-            //this.y = -220;
 
         },
 
@@ -77,7 +92,7 @@ var S = (function () {
             EX = Math.round((this.x + this.w) / map.sw),
             EY = Math.round((this.y + this.h) / map.sh),
 
-            la = 2, //load ahead
+            la = 1, //load ahead
 
             Y,
             X,
@@ -89,12 +104,11 @@ var S = (function () {
                 X = SX - la;
                 while (X < EX + la) {
 
-                    if (X >= -map.W / 2 && X < map.W / 2 && Y >= -map.H / 2 && Y < map.H / 2) {
+                    var sec = map.get(X, Y);
 
-                        i = (map.H / 2 + Y) * map.H + X + map.W / 2;
+                    if (sec) {
 
-                        map.load.push(map.secs[i]);
-
+                        map.load.push(sec);
                     }
 
                     X += 1;
