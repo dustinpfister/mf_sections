@@ -103,6 +103,7 @@ var S = (function () {
 
             this.x = -this.w / 2;
             this.y = -this.h / 2;
+			this.la = 1;
 
             this.update();
 
@@ -131,17 +132,17 @@ var S = (function () {
             EX = Math.round((this.x + this.w) / map.sw),
             EY = Math.round((this.y + this.h) / map.sh),
 
-            la = 2, //load ahead
+            //la = 2, //load ahead
 
             Y,
             X,
             i;
 
-            Y = SY - la;
-            while (Y < EY + la) {
+            Y = SY - this.la;
+            while (Y < EY + this.la) {
 
-                X = SX - la;
-                while (X < EX + la) {
+                X = SX - this.la;
+                while (X < EX + this.la) {
 
                     var sec = map.get(X, Y);
 

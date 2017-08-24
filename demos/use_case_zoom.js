@@ -196,7 +196,7 @@
 
 
         console.log();
-
+/*
         S.map.load.forEach(function (sec, index) {
 
             var x = offX + sec.x - sx,
@@ -214,6 +214,7 @@
             ctx.fillText(sec.i, x + 5, y + 5);
 
         });
+		*/
 
     },
 
@@ -228,10 +229,9 @@
         ctx.fillText('mh: ' + mh, x, y + dy * 2);
         ctx.fillText('vp pos (px) (' + S.vp.x + ',' + S.vp.y + ')', x, y + dy * 3);
         ctx.fillText('vp pos (sec) (' + S.vp.X + ',' + S.vp.Y + ')', x, y + dy * 4);
-
         ctx.fillText('vp sec index: ' + S.vp.secIndex, x, y + dy * 5);
-		
-		ctx.fillText('vp sec XY offset: (' + S.vp.secXOff+','+S.vp.secYOff+')', x, y + dy * 6);
+        ctx.fillText('vp sec XY offset: (' + S.vp.secXOff+','+S.vp.secYOff+')', x, y + dy * 6);
+        ctx.fillText('look ahead: ' + S.vp.la, x, y + dy * 7);
 
     },
 
