@@ -26,7 +26,7 @@ var S = (function () {
 
             if (debug) {
 
-                console.log('do you like this ligic computer???');
+                console.log('debug mode:');
                 console.log(X + ',' + Y);
                 console.log(X < hw);
 
@@ -34,9 +34,7 @@ var S = (function () {
 
             if (X >= -hw && X < hw && Y >= -hh && Y < hh) {
 
-                //return this.secs[(map.H / 2 + Y) * map.H + X + map.W / 2];
-
-                var i = map.W * (Y + hh) + (X + hw);
+                var i = map.W * (Y + hh) + X + hw;
 
                 if (debug) {
 
