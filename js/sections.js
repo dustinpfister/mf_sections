@@ -206,7 +206,23 @@ var S = (function () {
         map : map,
 
         // ref to vp
-        vp : vp
+        vp : vp,
+
+        ajust : function (obj, width, height) {
+
+            width = width || 640;
+            height = height || 480;
+
+            return {
+
+                x : (obj.x - vp.x) / map.sw * width / vp.mw,
+                y : (obj.y - vp.y) / map.sh * height / vp.mh,
+                w : width / vp.mw,
+                h : height / vp.mh
+
+            };
+
+        }
 
     };
 

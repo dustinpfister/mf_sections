@@ -171,16 +171,16 @@
 
         S.map.load.forEach(function (sec, index) {
 
-            if (sec.pl) {
+if (sec.pl) {
 
-                sec.pl.forEach(function (pl) {
+    sec.pl.forEach(function (pl) {
 
-                    ctx.fillStyle = '#ff0000';
-                    ctx.fillRect(pl.x + offX, pl.y + offY, pl.s, pl.s);
+        ctx.fillStyle = '#ff0000';
+        ctx.fillRect(pl.x + offX, pl.y + offY, pl.s, pl.s);
 
-                });
+    });
 
-            }
+}
 
         });
 
@@ -235,14 +235,30 @@
         sy = S.vp.sy / S.map.sh * 600;
 
         S.map.load.forEach(function (sec) {
+			
+			var box = S.ajust(sec,800,600);
 
+			ctx.strokeRect(
+
+			   box.x,
+			   box.y,
+			   box.w,
+			   box.h
+			
+		    );
+			
+			
+			
+			/*
             ctx.strokeRect(
 
                 (sec.x - S.vp.x) / S.map.sw * 800 / S.vp.mw,
-                (sec.y - S.vp.y) / S.map.sh * 600/ S.vp.mh,
+                (sec.y - S.vp.y) / S.map.sh * 600 / S.vp.mh,
                 800 / S.vp.mw,
                 600 / S.vp.mh);
 
+			*/
+				
         });
 
         ctx.fillStyle = '#ffff00';
