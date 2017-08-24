@@ -87,8 +87,8 @@
         // setup map
         S.map.sw = 32;
         S.map.sh = 32;
-        S.map.W = 10;
-        S.map.H = 6;
+        S.map.W = 20;
+        S.map.H = 12;
 
         S.vp.w = 32;
         S.vp.h = 32;
@@ -107,8 +107,12 @@
         S.vp.y = -S.vp.h / 2;
 
         // rings
+		
+		ring(10000, 190);
+		ring(5000, 150);
+		ring(100, 100);
         ring(20, 50);
-        ring(15, 70);
+        ring(10, 20);
 
         // load sections for first time
         S.vp.ls();
@@ -352,7 +356,7 @@ if (sec.pl) {
 
         if (keys[49]) {
 
-            if (S.vp.w < 320) {
+            if (S.vp.w < 640) {
 
                 S.vp.w += 2;
                 S.vp.x -= 1;
