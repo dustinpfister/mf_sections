@@ -249,6 +249,20 @@ if (sec.pl) {
 			
 			
 			
+            if (sec.pl) {
+
+                sec.pl.forEach(function (pl) {
+					
+					var box = S.ajust(pl,800,600);
+
+                    ctx.fillStyle = '#ff0000';
+                    ctx.fillRect(box.x, box.y, box.w, box.h);
+
+                });
+
+            }
+			
+			
 			/*
             ctx.strokeRect(
 

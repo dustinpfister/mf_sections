@@ -217,8 +217,8 @@ var S = (function () {
 
                 x : (obj.x - vp.x) / map.sw * width / vp.mw,
                 y : (obj.y - vp.y) / map.sh * height / vp.mh,
-                w : width / vp.mw,
-                h : height / vp.mh
+                w : obj.s === undefined ? width / vp.mw : obj.s * (11 - S.vp.mh),
+                h : obj.s === undefined ? height / vp.mh : obj.s * (11 - S.vp.mh)
 
             };
 
