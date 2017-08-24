@@ -125,9 +125,12 @@
 
         var s = S.map.secs;
 
+        ctx.strokeStyle = '#ffffff';
+        ctx.fillStyle = '#ffffff';
+
+        ctx.textBaseline = 'top';
         s.forEach(function (sec, index) {
 
-            ctx.strokeStyle = '#ffffff';
             ctx.strokeRect(
 
                 sec.x + offX,
@@ -135,6 +138,8 @@
                 sec.y + offY,
 
                 S.map.sw, S.map.sh);
+
+            //ctx.fillText(sec.x, sec.x + 5 + offX, sec.y + 5 + offY);
 
         });
 
@@ -142,9 +147,12 @@
 
     drawLoaded = function () {
 
+        ctx.strokeStyle = '#00ffff';
+        ctx.fillStyle = '#00ffff';
+
+        ctx.textBaseline = 'top';
         S.map.load.forEach(function (sec, index) {
 
-            ctx.strokeStyle = '#00ffff';
             ctx.strokeRect(
 
                 sec.x + offX,
@@ -152,6 +160,8 @@
                 sec.y + offY,
 
                 S.map.sw, S.map.sh);
+
+            ctx.fillText(sec.x - S.vp.x, sec.x + 5 + offX, sec.y + 5 + offY);
 
         });
     },
@@ -228,8 +238,8 @@
 
             ctx.strokeRect(
 
-                0,
-                0,
+                (sec.x - S.vp.x) / S.map.sw * 800 / S.vp.mw,
+                (sec.y - S.vp.y) / S.map.sh * 600/ S.vp.mh,
                 800 / S.vp.mw,
                 600 / S.vp.mh);
 
