@@ -114,6 +114,11 @@ var S = (function () {
             this.Y = Math.floor(this.y / map.sh);
             this.secIndex = Math.floor((this.Y + map.H / 2) * map.W + this.X + map.W / 2);
 
+            this.secXOff = this.x % map.sw;
+            this.secXOff = this.secXOff < 0 ? map.sw + this.secXOff : this.secXOff;
+            this.secYOff = this.y % map.sh
+                this.secYOff = this.secYOff < 0 ? map.sh + this.secYOff : this.secYOff;
+
         },
 
         // load sections based on current view port position

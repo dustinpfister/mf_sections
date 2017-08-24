@@ -230,6 +230,8 @@
         ctx.fillText('vp pos (sec) (' + S.vp.X + ',' + S.vp.Y + ')', x, y + dy * 4);
 
         ctx.fillText('vp sec index: ' + S.vp.secIndex, x, y + dy * 5);
+		
+		ctx.fillText('vp sec XY offset: (' + S.vp.secXOff+','+S.vp.secYOff+')', x, y + dy * 6);
 
     },
 
