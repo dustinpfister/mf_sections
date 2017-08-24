@@ -9,6 +9,8 @@
     mapW,
     offX,
     offY,
+    mw,
+    mh,
     keys = [],
 
     rnd = function () {
@@ -85,8 +87,8 @@
         // setup map
         S.map.sw = 32;
         S.map.sh = 32;
-        S.map.W = 8;
-        S.map.H = 4;
+        S.map.W = 10;
+        S.map.H = 6;
 
         S.vp.w = 32;
         S.vp.h = 32;
@@ -190,24 +192,42 @@
         ctx.strokeStyle = '#ffffff';
         var sx = S.map.load[0].X * S.map.sw;
 
+        //console.log(S.vp.x % S.map.sw);
+
+
+        console.log();
+
         S.map.load.forEach(function (sec, index) {
 
             var x = offX + sec.x - sx,
             y = offY * 3 + sec.y;
-            
 
             ctx.strokeRect(
 
-                x,
+                x * mw,
 
-                y,
-				S.map.sw,
-            S.map.sh);
+                y * mh,
+                S.map.sw * mw,
+                S.map.sh * mh);
 
-			ctx.textBaseline = 'top';
-            ctx.fillText(sec.i, x+5, y+5);
+            ctx.textBaseline = 'top';
+            ctx.fillText(sec.i, x + 5, y + 5);
 
         });
+
+    },
+
+    drawInfo = function () {
+
+        var x = 400,
+        y = 10,
+        dy = 20;
+
+        ctx.fillStyle = '#00ff00';
+        ctx.fillText('mw: ' + mw, x, y + dy * 1);
+        ctx.fillText('mh: ' + mh, x, y + dy * 2);
+        ctx.fillText('vp pos (px) (' + S.vp.x + ',' + S.vp.y + ')', x, y + dy * 3);
+        ctx.fillText('vp pos (sec) (' + S.vp.X + ',' + S.vp.Y + ')', x, y + dy * 4);
 
     },
 
@@ -219,6 +239,7 @@
         drawPlanets();
         drawViewport();
 
+        drawInfo();
     },
 
     // clear screen
@@ -292,6 +313,12 @@
             console.log(S.map.load);
 
         }
+
+        // multi
+        mw = S.map.sw / S.vp.w;
+        mh = S.map.sh / S.vp.h;
+
+		S.vp.update();
         S.vp.ls();
 
         cls();

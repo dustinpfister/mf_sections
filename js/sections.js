@@ -104,6 +104,15 @@ var S = (function () {
             this.x = -this.w / 2;
             this.y = -this.h / 2;
 
+            this.update();
+
+        },
+
+        update : function () {
+
+            this.X = Math.floor(this.x / map.sw);
+            this.Y = Math.floor(this.y / map.sh);
+
         },
 
         // load sections based on current view port position
