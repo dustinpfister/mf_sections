@@ -112,6 +112,7 @@ var S = (function () {
 
             this.X = Math.floor(this.x / map.sw);
             this.Y = Math.floor(this.y / map.sh);
+            this.secIndex = Math.floor((this.Y + map.H / 2) * map.W + this.X + map.W / 2);
 
         },
 

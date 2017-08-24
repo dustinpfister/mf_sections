@@ -229,6 +229,8 @@
         ctx.fillText('vp pos (px) (' + S.vp.x + ',' + S.vp.y + ')', x, y + dy * 3);
         ctx.fillText('vp pos (sec) (' + S.vp.X + ',' + S.vp.Y + ')', x, y + dy * 4);
 
+        ctx.fillText('vp sec index: ' + S.vp.secIndex, x, y + dy * 5);
+
     },
 
     // the single draw function
@@ -318,7 +320,7 @@
         mw = S.map.sw / S.vp.w;
         mh = S.map.sh / S.vp.h;
 
-		S.vp.update();
+        S.vp.update();
         S.vp.ls();
 
         cls();
