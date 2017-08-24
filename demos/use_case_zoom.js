@@ -183,38 +183,60 @@
         ctx.strokeStyle = '#00ff00';
 
         // draw viewport marker
-        ctx.strokeRect(
-
-            S.vp.x + offX, S.vp.y + offY, S.vp.w, S.vp.h);
+        ctx.strokeRect(S.vp.x + offX, S.vp.y + offY, S.vp.w, S.vp.h);
 
         // draw scaled view
 
         ctx.strokeStyle = '#ffffff';
-        var sx = S.map.load[0].X * S.map.sw;
+        //var sx = S.map.load[0].X * S.map.sw;
 
         //console.log(S.vp.x % S.map.sw);
 
 
-        console.log();
-/*
+        //console.log();
+        /*
         S.map.load.forEach(function (sec, index) {
 
-            var x = offX + sec.x - sx,
-            y = offY * 3 + sec.y;
+        var x = offX + sec.x - sx,
+        y = offY * 3 + sec.y;
+
+        ctx.strokeRect(
+
+        x * mw,
+
+        y * mh,
+        S.map.sw * mw,
+        S.map.sh * mh);
+
+        ctx.textBaseline = 'top';
+        ctx.fillText(sec.i, x + 5, y + 5);
+
+        });
+         */
+
+    },
+
+    drawSceen = function () {
+
+        ctx.strokeStyle = '#ffff00';
+        ctx.lineWidth = 3;
+
+        var sx = S.vp.sx / S.map.sw * 800,
+        sy = S.vp.sy / S.map.sh * 600;
+
+        S.map.load.forEach(function (sec) {
 
             ctx.strokeRect(
 
-                x * mw,
-
-                y * mh,
-                S.map.sw * mw,
-                S.map.sh * mh);
-
-            ctx.textBaseline = 'top';
-            ctx.fillText(sec.i, x + 5, y + 5);
+                0,
+                0,
+                800 / S.vp.mw,
+                600 / S.vp.mh);
 
         });
-		*/
+
+        ctx.fillStyle = '#ffff00';
+        ctx.fillText('sx ' + sx, 10, 300);
 
     },
 
@@ -225,19 +247,22 @@
         dy = 20;
 
         ctx.fillStyle = '#00ff00';
-        ctx.fillText('mw: ' + mw, x, y + dy * 1);
-        ctx.fillText('mh: ' + mh, x, y + dy * 2);
+        ctx.fillText('mw: ' + S.vp.mw, x, y + dy * 1);
+        ctx.fillText('mh: ' + S.vp.mh, x, y + dy * 2);
         ctx.fillText('vp pos (px) (' + S.vp.x + ',' + S.vp.y + ')', x, y + dy * 3);
         ctx.fillText('vp pos (sec) (' + S.vp.X + ',' + S.vp.Y + ')', x, y + dy * 4);
         ctx.fillText('vp sec index: ' + S.vp.secIndex, x, y + dy * 5);
-        ctx.fillText('vp sec XY offset: (' + S.vp.secXOff+','+S.vp.secYOff+')', x, y + dy * 6);
+        ctx.fillText('vp sec XY offset: (' + S.vp.secXOff + ',' + S.vp.secYOff + ')', x, y + dy * 6);
         ctx.fillText('look ahead: ' + S.vp.la, x, y + dy * 7);
-		ctx.fillText('sx: ' + S.vp.sx, x, y + dy * 8);
+        ctx.fillText('sx: ' + S.vp.sx, x, y + dy * 8);
+        ctx.fillText('ajustX: ' + S.vp.ajustX, x, y + dy * 9);
 
     },
 
     // the single draw function
     draw = function () {
+
+        drawSceen();
 
         drawSections();
         drawLoaded();

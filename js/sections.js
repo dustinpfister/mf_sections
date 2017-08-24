@@ -113,6 +113,10 @@ var S = (function () {
 
             this.X = Math.floor(this.x / map.sw);
             this.Y = Math.floor(this.y / map.sh);
+
+            this.mw = this.w / map.sw;
+            this.mh = this.h / map.sh;
+
             this.secIndex = Math.floor((this.Y + map.H / 2) * map.W + this.X + map.W / 2);
 
             this.secXOff = this.x % map.sw;
@@ -121,28 +125,36 @@ var S = (function () {
             this.secYOff = this.secYOff < 0 ? map.sh + this.secYOff : this.secYOff;
 
             // start x when rendering
-			if(map.load[0]){
-			this.sx = map.load.length;
-			}
-			/*
+            this.sx = 0;
+            if (map.load[0]) {
+
+                this.sx = map.load[0].x - this.x;
+                this.sy = map.load[0].y - this.y;
+
+                this.ajustX = map.load[0].X * map.sw * this.mw;
+                this.ajustY = map.load[0].Y * map.sh * this.mh;
+
+            }
+
+            /*
             if (this.secXOff < map.sw / 2) {
 
-                if (this.secIndex > 0) {
+            if (this.secIndex > 0) {
 
-                    this.sx = (this.la * map.sw + this.secXOff) * -1;
-
-                } else {
-
-                    this.sx = -this.secXOff;
-
-                }
+            this.sx = (this.la * map.sw + this.secXOff) * -1;
 
             } else {
 
-                this.sx = 0;
+            this.sx = -this.secXOff;
 
             }
-			*/
+
+            } else {
+
+            this.sx = 0;
+
+            }
+             */
 
         },
 
