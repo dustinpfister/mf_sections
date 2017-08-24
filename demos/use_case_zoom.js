@@ -232,6 +232,7 @@
         ctx.fillText('vp sec index: ' + S.vp.secIndex, x, y + dy * 5);
         ctx.fillText('vp sec XY offset: (' + S.vp.secXOff+','+S.vp.secYOff+')', x, y + dy * 6);
         ctx.fillText('look ahead: ' + S.vp.la, x, y + dy * 7);
+		ctx.fillText('sx: ' + S.vp.sx, x, y + dy * 8);
 
     },
 

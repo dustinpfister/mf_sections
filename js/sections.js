@@ -103,7 +103,7 @@ var S = (function () {
 
             this.x = -this.w / 2;
             this.y = -this.h / 2;
-			this.la = 1;
+            this.la = 1;
 
             this.update();
 
@@ -117,8 +117,32 @@ var S = (function () {
 
             this.secXOff = this.x % map.sw;
             this.secXOff = this.secXOff < 0 ? map.sw + this.secXOff : this.secXOff;
-            this.secYOff = this.y % map.sh
-                this.secYOff = this.secYOff < 0 ? map.sh + this.secYOff : this.secYOff;
+            this.secYOff = this.y % map.sh;
+            this.secYOff = this.secYOff < 0 ? map.sh + this.secYOff : this.secYOff;
+
+            // start x when rendering
+			if(map.load[0]){
+			this.sx = map.load.length;
+			}
+			/*
+            if (this.secXOff < map.sw / 2) {
+
+                if (this.secIndex > 0) {
+
+                    this.sx = (this.la * map.sw + this.secXOff) * -1;
+
+                } else {
+
+                    this.sx = -this.secXOff;
+
+                }
+
+            } else {
+
+                this.sx = 0;
+
+            }
+			*/
 
         },
 
@@ -146,7 +170,7 @@ var S = (function () {
 
                     var sec = map.get(X, Y);
 
-                    if (sec) {
+                    if (sec.X != undefined) {
 
                         map.load.push(sec);
                     }
