@@ -73,7 +73,7 @@ var S = (function () {
                     // push new section object
                     this.secs.push({
 
-                        i : (Y + Math.floor(this.W / 2)) * this.W + X + this.W / 2,
+                        i : (Y + Math.floor(this.H / 2)) * this.W + X + Math.floor(this.W / 2),
                         X : X, // cell pos
                         Y : Y,
                         x : x, // px pos

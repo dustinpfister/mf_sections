@@ -83,19 +83,16 @@
         canvas.height = 600;
 
         // setup map
-
         S.map.sw = 32;
-        S.map.sh = 16;
-        S.map.W = 16;
-        S.map.H = 9;
+        S.map.sh = 32;
+        S.map.W = 8;
+        S.map.H = 4;
 
         S.vp.w = 32;
         S.vp.h = 32;
 
         S.vp.set();
         S.map.set();
-
-        console.log(S.map.getPos(-7, -100, true));
 
         mapW = S.map.sw * S.map.W;
         mapH = S.map.sh * S.map.H;
@@ -154,19 +151,6 @@
 
                 S.map.sw, S.map.sh);
 
-            /*
-            if (sec.pl) {
-
-            sec.pl.forEach(function (pl) {
-
-            ctx.fillStyle = '#ff0000';
-            ctx.fillRect(pl.x + offX, pl.y + offY, pl.s, pl.s);
-
-            });
-
-            }
-             */
-
         });
     },
 
@@ -196,9 +180,34 @@
         ctx.lineWidth = 3;
         ctx.strokeStyle = '#00ff00';
 
+        // draw viewport marker
         ctx.strokeRect(
 
-            S.vp.x + offX, S.vp.y + offY, S.vp.w, S.vp.h)
+            S.vp.x + offX, S.vp.y + offY, S.vp.w, S.vp.h);
+
+        // draw scaled view
+
+        ctx.strokeStyle = '#ffffff';
+        var sx = S.map.load[0].X * S.map.sw;
+
+        S.map.load.forEach(function (sec, index) {
+
+            var x = offX + sec.x - sx,
+            y = offY * 3 + sec.y;
+            
+
+            ctx.strokeRect(
+
+                x,
+
+                y,
+				S.map.sw,
+            S.map.sh);
+
+			ctx.textBaseline = 'top';
+            ctx.fillText(sec.i, x+5, y+5);
+
+        });
 
     },
 
