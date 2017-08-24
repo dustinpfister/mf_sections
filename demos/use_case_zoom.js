@@ -42,6 +42,16 @@
 
             //console.log();
             var sec = S.map.getPos(a, b);
+			
+			//console.log(sec);
+			
+			if(sec === undefined){
+				
+				console.log('undefined sec');
+				console.log(a);
+				console.log(b);
+				
+			}
 
             //console.log(sec);
 
@@ -85,6 +95,9 @@
         S.vp.set();
         S.map.set();
 
+		
+		console.log(S.map.getPos(-7, -100, true));
+		
         mapW = S.map.sw * S.map.W;
         mapH = S.map.sh * S.map.H;
         offX = mapW / 2 + 10; //mapW / 2 + (canvas.width / 2 - mapW / 2);
@@ -96,8 +109,14 @@
         S.vp.y = -S.vp.h / 2;
 
         // rings
-        //ring(20, 50);
-        //ring(100, 200);
+        ring(20, 50);
+        ring(15, 70);
+		
+		// load sections for first time
+        S.vp.ls();
+		
+		cls();
+		draw();
 
 
         loop();

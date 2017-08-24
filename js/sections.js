@@ -11,24 +11,47 @@ var S = (function () {
         secs : [], // the sections array
         load : [], // currently loaded sections
 
-		// get a section by x, and y pixel location
-        getPos : function (x, y) {
+        // get a section by x, and y pixel location
+        getPos : function (x, y, debug) {
 
-            return this.get(Math.floor(x / this.sw), Math.floor(y / this.sh));
+            return this.get(Math.floor(x / this.sw), Math.floor(y / this.sh), debug);
 
         },
 
         // get a section by X & Y sec pos
-        get : function (X, Y) {
+        get : function (X, Y, debug) {
 
-            if (X >= -map.W / 2 && X < map.W / 2 && Y >= -map.H / 2 && Y < map.H / 2) {
+            var hw = Math.ceil(map.W / 2),
+            hh = Math.ceil(map.H / 2);
+
+            if (debug) {
+
+                console.log('do you like this ligic computer???');
+                console.log(X + ',' + Y);
+                console.log(X < hw);
+
+            }
+
+            if (X >= -hw && X < hw && Y >= -hh && Y < hh) {
 
                 //return this.secs[(map.H / 2 + Y) * map.H + X + map.W / 2];
 
-				return this.secs[ map.W * Y + X + Math.floor(map.H * map.W / 2)];
+                var i = map.W * (Y + hh) + (X + hw);
 
-				
+                if (debug) {
+
+                    console.log('check pass');
+                    console.log('i = ' + i);
+
+                }
+
+                var sec = this.secs[i];
+
+                return sec
+
             };
+
+            return {};
 
         },
 
@@ -36,14 +59,14 @@ var S = (function () {
         set : function () {
 
             var X,
-            Y = -this.H / 2,
+            Y = Math.floor(-this.H / 2),
             x,
             y;
 
             this.secs = [];
             while (Y < this.H / 2) {
 
-                X = -this.W / 2;
+                X = Math.floor(-this.W / 2);
                 while (X < this.W / 2) {
 
                     x = X * this.sw;
@@ -52,7 +75,7 @@ var S = (function () {
                     // push new section object
                     this.secs.push({
 
-                        i : (Y + this.W / 2) * this.W + X + this.W / 2,
+                        i : (Y + Math.floor(this.W / 2)) * this.W + X + this.W / 2,
                         X : X, // cell pos
                         Y : Y,
                         x : x, // px pos
