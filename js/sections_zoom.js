@@ -28,11 +28,7 @@ var S = (function () {
 
             if (X >= -hw && X < hw && Y >= -hh && Y < hh) {
 
-                var i = map.W * (Y + hh) + X + hw,
-
-                sec = this.secs[i];
-
-                return sec
+                return this.secs[map.W * (Y + hh) + X + hw];
 
             };
 
@@ -44,23 +40,24 @@ var S = (function () {
         set : function () {
 
             var X,
-            Y = Math.floor(-this.H / 2),
+            s = this,
+            Y = Math.floor(-s.H / 2),
             x,
             y;
 
-            this.secs = [];
-            while (Y < this.H / 2) {
+            s.secs = [];
+            while (Y < s.H / 2) {
 
-                X = Math.floor(-this.W / 2);
-                while (X < this.W / 2) {
+                X = Math.floor(-s.W / 2);
+                while (X < s.W / 2) {
 
-                    x = X * this.sw;
-                    y = Y * this.sh;
+                    x = X * s.sw;
+                    y = Y * s.sh;
 
                     // push new section object
-                    this.secs.push({
+                    s.secs.push({
 
-                        i : (Y + Math.floor(this.H / 2)) * this.W + X + Math.floor(this.W / 2),
+                        i : (Y + Math.floor(s.H / 2)) * s.W + X + Math.floor(s.W / 2),
                         X : X, // cell pos
                         Y : Y,
                         x : x, // px pos
@@ -88,38 +85,43 @@ var S = (function () {
         // set up
         set : function () {
 
-            this.x = -this.w / 2;
-            this.y = -this.h / 2;
-            this.la = 1;
+            var s = this;
 
-            this.update();
+            s.x = -s.w / 2;
+            s.y = -s.h / 2;
+            s.la = 1;
+
+            s.update();
 
         },
 
         update : function () {
 
-            this.X = Math.floor(this.x / map.sw);
-            this.Y = Math.floor(this.y / map.sh);
+            var s = this,
+            l = map.load[0];
 
-            this.mw = this.w / map.sw;
-            this.mh = this.h / map.sh;
+            s.X = Math.floor(s.x / map.sw);
+            s.Y = Math.floor(s.y / map.sh);
 
-            this.secIndex = Math.floor((this.Y + map.H / 2) * map.W + this.X + map.W / 2);
+            s.mw = s.w / map.sw;
+            s.mh = s.h / map.sh;
 
-            this.secXOff = this.x % map.sw;
-            this.secXOff = this.secXOff < 0 ? map.sw + this.secXOff : this.secXOff;
-            this.secYOff = this.y % map.sh;
-            this.secYOff = this.secYOff < 0 ? map.sh + this.secYOff : this.secYOff;
+            s.secIndex = Math.floor((s.Y + map.H / 2) * map.W + s.X + map.W / 2);
+
+            s.secXOff = s.x % map.sw;
+            s.secXOff = s.secXOff < 0 ? map.sw + s.secXOff : s.secXOff;
+            s.secYOff = s.y % map.sh;
+            s.secYOff = s.secYOff < 0 ? map.sh + s.secYOff : s.secYOff;
 
             // start x when rendering
-            this.sx = 0;
-            if (map.load[0]) {
+            s.sx = 0;
+            if (l) {
 
-                this.sx = map.load[0].x - this.x;
-                this.sy = map.load[0].y - this.y;
+                s.sx = l.x - s.x;
+                s.sy = l.y - s.y;
 
-                this.ajustX = map.load[0].X * map.sw * this.mw;
-                this.ajustY = map.load[0].Y * map.sh * this.mh;
+                s.ajustX = l.X * map.sw * s.mw;
+                s.ajustY = l.Y * map.sh * s.mh;
 
             }
 
@@ -128,22 +130,24 @@ var S = (function () {
         // load sections based on current view port position
         ls : function () {
 
+            var s = this;
+
             map.load = [];
 
-            var SX = Math.round(this.x / map.sw),
-            SY = Math.round(this.y / map.sh),
-            EX = Math.round((this.x + this.w) / map.sw),
-            EY = Math.round((this.y + this.h) / map.sh),
+            var SX = Math.round(s.x / map.sw),
+            SY = Math.round(s.y / map.sh),
+            EX = Math.round((s.x + s.w) / map.sw),
+            EY = Math.round((s.y + s.h) / map.sh),
 
             Y,
             X,
             i;
 
-            Y = SY - this.la;
-            while (Y < EY + this.la) {
+            Y = SY - s.la;
+            while (Y < EY + s.la) {
 
-                X = SX - this.la;
-                while (X < EX + this.la) {
+                X = SX - s.la;
+                while (X < EX + s.la) {
 
                     var sec = map.get(X, Y);
 
