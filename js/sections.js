@@ -24,26 +24,11 @@ var S = (function () {
             var hw = Math.ceil(map.W / 2),
             hh = Math.ceil(map.H / 2);
 
-            if (debug) {
-
-                console.log('debug mode:');
-                console.log(X + ',' + Y);
-                console.log(X < hw);
-
-            }
-
             if (X >= -hw && X < hw && Y >= -hh && Y < hh) {
 
-                var i = map.W * (Y + hh) + X + hw;
+                var i = map.W * (Y + hh) + X + hw,
 
-                if (debug) {
-
-                    console.log('check pass');
-                    console.log('i = ' + i);
-
-                }
-
-                var sec = this.secs[i];
+                sec = this.secs[i];
 
                 return sec
 
@@ -136,26 +121,6 @@ var S = (function () {
 
             }
 
-            /*
-            if (this.secXOff < map.sw / 2) {
-
-            if (this.secIndex > 0) {
-
-            this.sx = (this.la * map.sw + this.secXOff) * -1;
-
-            } else {
-
-            this.sx = -this.secXOff;
-
-            }
-
-            } else {
-
-            this.sx = 0;
-
-            }
-             */
-
         },
 
         // load sections based on current view port position
@@ -167,8 +132,6 @@ var S = (function () {
             SY = Math.round(this.y / map.sh),
             EX = Math.round((this.x + this.w) / map.sw),
             EY = Math.round((this.y + this.h) / map.sh),
-
-            //la = 2, //load ahead
 
             Y,
             X,

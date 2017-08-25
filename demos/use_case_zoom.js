@@ -107,10 +107,10 @@
         S.vp.y = -S.vp.h / 2;
 
         // rings
-		
-		ring(10000, 190);
-		ring(5000, 150);
-		ring(100, 100);
+
+        ring(10000, 190);
+        ring(5000, 150);
+        ring(100, 100);
         ring(20, 50);
         ring(10, 20);
 
@@ -143,8 +143,6 @@
 
                 S.map.sw, S.map.sh);
 
-            //ctx.fillText(sec.x, sec.x + 5 + offX, sec.y + 5 + offY);
-
         });
 
     },
@@ -175,16 +173,16 @@
 
         S.map.load.forEach(function (sec, index) {
 
-if (sec.pl) {
+            if (sec.pl) {
 
-    sec.pl.forEach(function (pl) {
+                sec.pl.forEach(function (pl) {
 
-        ctx.fillStyle = '#ff0000';
-        ctx.fillRect(pl.x + offX, pl.y + offY, pl.s, pl.s);
+                    ctx.fillStyle = '#ff0000';
+                    ctx.fillRect(pl.x + offX, pl.y + offY, pl.s, pl.s);
 
-    });
+                });
 
-}
+            }
 
         });
 
@@ -239,25 +237,21 @@ if (sec.pl) {
         sy = S.vp.sy / S.map.sh * 600;
 
         S.map.load.forEach(function (sec) {
-			
-			var box = S.ajust(sec,800,600);
 
-			ctx.strokeRect(
+            var box = S.ajust(sec, 800, 600);
 
-			   box.x,
-			   box.y,
-			   box.w,
-			   box.h
-			
-		    );
-			
-			
-			
+            ctx.strokeRect(
+
+                box.x,
+                box.y,
+                box.w,
+                box.h);
+
             if (sec.pl) {
 
                 sec.pl.forEach(function (pl) {
-					
-					var box = S.ajust(pl,800,600);
+
+                    var box = S.ajust(pl, 800, 600);
 
                     ctx.fillStyle = '#ff0000';
                     ctx.fillRect(box.x, box.y, box.w, box.h);
@@ -265,18 +259,17 @@ if (sec.pl) {
                 });
 
             }
-			
-			
-			/*
+
+            /*
             ctx.strokeRect(
 
-                (sec.x - S.vp.x) / S.map.sw * 800 / S.vp.mw,
-                (sec.y - S.vp.y) / S.map.sh * 600 / S.vp.mh,
-                800 / S.vp.mw,
-                600 / S.vp.mh);
+            (sec.x - S.vp.x) / S.map.sw * 800 / S.vp.mw,
+            (sec.y - S.vp.y) / S.map.sh * 600 / S.vp.mh,
+            800 / S.vp.mw,
+            600 / S.vp.mh);
 
-			*/
-				
+             */
+
         });
 
         ctx.fillStyle = '#ffff00';
