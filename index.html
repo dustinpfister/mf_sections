@@ -10,9 +10,19 @@
  
  // I want 640 x 480 px sections, and I want a 10 * 8 grid of them
  S.set(640,480,10,8);
+ 
+ // set look ahead to 1
+ S.la = 1;
+ 
+ // load sections with the given view port values
  S.ls(0,0,320,240);
  
- console.log(S);
+ console.log(S.secs.length); // 80 sections
+ console.log(S.load.length); // 9 currently loaded.
+ 
+ var section = S.getPos(680,200); // get the section at 680,200
+ 
+ console.log(section.X + ',' +section.Y); // 1,0
  
  </script>
  

@@ -7,36 +7,82 @@ In other words say you have a space shooter game in which you have a map that co
 ### Getting Started Example
 
 ```js
-// map section size (pixels)
-S.map.sw = 800;
-S.map.sh = 600;
+ // I want 640 x 480 px sections, and I want a 10 * 8 grid of them
+ S.set(640,480,10,8);
  
-// map section size (section count)
-S.map.W = 4;
-S.map.H = 4;
+ // set look ahead to 1
+ S.la = 1;
  
-// map view port size (pixels)
-S.vp.w = 320;
-S.vp.h = 240;
+ // load sections with the given view port values
+ S.ls(0,0,320,240);
  
-// setup map, and view port
-S.map.set();
-S.vp.set();
- 
-// load current section
-S.vp.ls();
- 
-console.log('section count: ' + S.map.secs.length); // 16 sections
-console.log('loaded count: ' + S.map.load.length); // 4 sections loaded
- 
-// change view port position
-S.vp.x = -1600;
-S.vp.y = -1200;
- 
-S.vp.ls();
-console.log('loaded count: ' + S.map.load.length); // 1 sections loaded
+ console.log(S.secs.length); // 80 sections
+ console.log(S.load.length); // 9 currently loaded.
 ```
 
-## sections_zoom.js
+## The Props
 
-I also made sections_zoom.js as a more advanced variant that introduces a zoom feature.
+### S.sw
+
+The pixel width of a section
+
+### S.sh
+
+The pixel height of a section
+
+### S.W
+
+The width of the section grid
+
+### S.H
+
+The height of the section grid
+
+### S.la
+
+how many sections to look ahead. If set to 0 only the sections that lay within the view port values given when calling S.ls(x,y,w,h) will be loaded into S.load.
+
+### S.secs
+
+The array of sections
+
+## S.load
+
+The currently loaded sections, this is what I will be looping over on each frame tick. The whole point of this dependency is because of this array, as it helps to reduce workload.
+
+## The Methods
+
+
+### S.set(sw,sh,W,H);
+
+```js
+ S.set(640,480,10,10);
+ 
+ console.log(S.secs.length); // 100
+```
+
+### S.getPos(x,y)
+
+Get a section at the given x, and y pixel location.
+
+```js
+ S.set(640,480,10,8);
+ 
+ var section = S.getPos(680,200); // get the section at pixel location 680,200
+ 
+ console.log(section.X + ',' +section.Y); // 1,0
+```
+
+### S.get(X,Y)
+
+Get a section at the given grid location
+
+ S.set(640,480,10,8);
+ 
+ var section = S.get(1,0); // get the section at grid location 1,0
+ 
+ console.log(section.X + ',' +section.Y); // 1,0
+ 
+### S.ls(x,y,w,h)
+
+load sections into S.load based on the given view port values, and preexisting load is lost.

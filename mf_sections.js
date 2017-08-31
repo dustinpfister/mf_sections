@@ -9,33 +9,6 @@ var S = {
     secs : [], // the sections array
     load : [], // currently loaded sections
 
-    // get a section by x, and y pixel location
-    getPos : function (x, y, debug) {
-
-        return this.get(Math.floor(x / this.sw), Math.floor(y / this.sh), debug);
-
-    },
-
-    // get a section by X & Y sec pos
-    get : function (X, Y, debug) {
-
-        var hw = Math.ceil(this.W / 2),
-        hh = Math.ceil(this.H / 2);
-
-        if (X >= -hw && X < hw && Y >= -hh && Y < hh) {
-
-            var i = this.W * (Y + hh) + X + hw,
-
-            sec = this.secs[i];
-
-            return sec
-
-        };
-
-        return {};
-
-    },
-
     // setup sections
     set : function (sw, sh, W, H) {
 
@@ -76,6 +49,33 @@ var S = {
 
             Y += 1;
         }
+
+    },
+
+    // get a section by x, and y pixel location
+    getPos : function (x, y) {
+
+        return this.get(Math.floor(x / this.sw), Math.floor(y / this.sh));
+
+    },
+
+    // get a section by X & Y sec pos
+    get : function (X, Y) {
+
+        var hw = Math.ceil(this.W / 2),
+        hh = Math.ceil(this.H / 2);
+
+        if (X >= -hw && X < hw && Y >= -hh && Y < hh) {
+
+            var i = this.W * (Y + hh) + X + hw,
+
+            sec = this.secs[i];
+
+            return sec
+
+        };
+
+        return {};
 
     },
 
@@ -121,23 +121,3 @@ var S = {
     }
 
 };
-
-S.set();
-
-/*
-ajust : function (obj, width, height) {
-
-width = width || 640;
-height = height || 480;
-
-return {
-
-x : (obj.x - vp.x) / map.sw * width / vp.mw,
-y : (obj.y - vp.y) / map.sh * height / vp.mh,
-w : obj.s === undefined ? width / vp.mw : obj.s * (11 - S.vp.mh),
-h : obj.s === undefined ? height / vp.mh : obj.s * (11 - S.vp.mh)
-
-};
-
-}
-*/
