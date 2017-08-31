@@ -1,6 +1,6 @@
-## sections.js
+## mf_sections.js
 
-Sections is a JavaScript micro framework (around 2KB or lower so far) developed as my solution for helping with breaking down a large map area into smaller sections. The main reason for doing this is so that I do not have to loop over a very large array of objects, but rather just a few objects that are in the arrays of the current loaded 'sections'.
+Sections is a JavaScript micro framework (around 2KB or lower so far) developed as my solution for helping with breaking down a large map area into smaller sections. The main reason for doing this is so that I do not have to loop over a very large array of objects, but rather just a few objects that are in the current state of a "load" array.
 
 In other words say you have a space shooter game in which you have a map that contains 20,000 planet objects, are you going to loop over all twenty thousand planet object instances on each frame tick? Of course not, you need to break it down some way. Sections can be regarded as my solution to this problem.
 
