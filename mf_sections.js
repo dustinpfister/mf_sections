@@ -15,27 +15,28 @@ var S = {
         var X,
         Y,
         x,
-        y;
+        y,
+        s = this;
 
-        this.sw = sw || 320;
-        this.sh = sh || 240;
-        this.W = W || 8;
-        this.H = H || 5;
+        s.sw = sw || 320;
+        s.sh = sh || 240;
+        s.W = W || 8;
+        s.H = H || 5;
 
-        this.secs = [];
-        Y = Math.floor(-this.H / 2);
-        while (Y < this.H / 2) {
+        s.secs = [];
+        Y = Math.floor(-s.H / 2);
+        while (Y < s.H / 2) {
 
-            X = Math.floor(-this.W / 2);
-            while (X < this.W / 2) {
+            X = Math.floor(-s.W / 2);
+            while (X < s.W / 2) {
 
-                x = X * this.sw;
-                y = Y * this.sh;
+                x = X * s.sw;
+                y = Y * s.sh;
 
                 // push new section object
-                this.secs.push({
+                s.secs.push({
 
-                    i : (Y + Math.floor(this.H / 2)) * this.W + X + Math.floor(this.W / 2),
+                    i : (Y + Math.floor(s.H / 2)) * s.W + X + Math.floor(s.W / 2),
                     X : X, // cell pos
                     Y : Y,
                     x : x, // px pos
@@ -88,26 +89,27 @@ var S = {
         EY,
         Y,
         X,
-        i;
+        i,
+        s = this;
 
-        this.load = [];
+        s.load = [];
 
-        SX = Math.round(x / this.sw);
-        SY = Math.round(y / this.sh);
-        EX = Math.round((x + w) / this.sw);
-        EY = Math.round((y + h) / this.sh);
+        SX = Math.round(x / s.sw);
+        SY = Math.round(y / s.sh);
+        EX = Math.round((x + w) / s.sw);
+        EY = Math.round((y + h) / s.sh);
 
-        Y = SY - this.la;
-        while (Y < EY + this.la) {
+        Y = SY - s.la;
+        while (Y < EY + s.la) {
 
-            X = SX - this.la;
-            while (X < EX + this.la) {
+            X = SX - s.la;
+            while (X < EX + s.la) {
 
-                var sec = this.get(X, Y);
+                var sec = s.get(X, Y);
 
                 if (sec.X != undefined) {
 
-                    this.load.push(sec);
+                    s.load.push(sec);
                 }
 
                 X += 1;
